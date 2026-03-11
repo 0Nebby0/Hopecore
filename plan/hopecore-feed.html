@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hopecore — Feed</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #fef3e2;
+      --orange: #f5a623;
+      --navy: #2c3e50;
+      --muted: #8a8a8a;
+      --border: #e8d9c0;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: Georgia, serif;
+      background: #e8ddd0;
+      color: var(--navy);
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      background: var(--cream);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-size: 18px;
+      font-weight: bold;
+      color: var(--orange);
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 13px;
+      color: var(--navy);
+      font-family: 'Trebuchet MS', sans-serif;
+    }
+
+    .nav-links a.active {
+      color: var(--orange);
+      border-bottom: 2px solid var(--orange);
+      padding-bottom: 2px;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 13px;
+      font-family: 'Trebuchet MS', sans-serif;
+    }
+
+    .avatar-placeholder {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--border);
+      border: 2px solid var(--orange);
+    }
+
+    /* LAYOUT */
+    .page {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 28px 16px;
+      display: grid;
+      grid-template-columns: 220px 1fr 200px;
+      gap: 24px;
+    }
+
+    /* SIDEBAR LEFT */
+    .sidebar-left {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .sidebar-item {
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-family: 'Trebuchet MS', sans-serif;
+      color: var(--navy);
+      cursor: pointer;
+      background: transparent;
+    }
+
+    .sidebar-item.active {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      color: var(--orange);
+      font-weight: bold;
+    }
+
+    .sidebar-item:hover {
+      background: var(--cream);
+    }
+
+    .sidebar-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 8px 0;
+    }
+
+    .sidebar-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      padding: 0 14px;
+      font-family: 'Trebuchet MS', sans-serif;
+      margin-top: 4px;
+    }
+
+    /* FEED */
+    .feed {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* COMPOSE BOX */
+    .compose {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+    }
+
+    .compose-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .compose-input {
+      flex: 1;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 10px 16px;
+      font-size: 13px;
+      color: var(--muted);
+      font-family: Georgia, serif;
+    }
+
+    .compose-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .btn-ghost {
+      padding: 6px 14px;
+      font-size: 12px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: transparent;
+      color: var(--navy);
+      cursor: pointer;
+      font-family: 'Trebuchet MS', sans-serif;
+    }
+
+    .btn-primary {
+      padding: 6px 16px;
+      font-size: 12px;
+      border: none;
+      border-radius: 20px;
+      background: var(--orange);
+      color: white;
+      cursor: pointer;
+      font-family: 'Trebuchet MS', sans-serif;
+      font-weight: bold;
+    }
+
+    /* POST CARD */
+    .post {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px;
+    }
+
+    .post-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .post-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+
+    .post-meta {
+      flex: 1;
+    }
+
+    .post-name {
+      font-size: 13px;
+      font-weight: bold;
+      color: var(--navy);
+      font-family: 'Trebuchet MS', sans-serif;
+    }
+
+    .post-time {
+      font-size: 11px;
+      color: var(--muted);
+      font-family: 'Trebuchet MS', sans-serif;
+    }
+
+    .post-tag {
+      font-size: 10px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: var(--orange);
+      color: white;
+      font-family: 'Trebuchet MS', sans-serif;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .post-body {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--navy);
+      margin-bottom: 14px;
+    }
+
+    .post-body.large {
+      font-size: 17px;
+      font-style: italic;
+      color: var(--navy);
+      border-left: 3px solid var(--orange);
+      padding-left: 14px;
+    }
+
+    /* Image placeholder */
+    .post-image-placeholder {
+      width: 100%;
+      height: 180px;
+      background: var(--border);
+      border-radius: 8px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: var(--muted);
+      font-family: 'Trebuchet MS', sans-serif;
+      border: 1px dashed #c8b89a;
+    }
+
+    .post-actions {
+      display: flex;
+      gap: 20px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .action-btn {
+      font-size: 12px;
+      color: var(--muted);
+      cursor: pointer;
+      font-family: 'Trebuchet MS', sans-serif;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .action-btn.liked {
+      color: var(--orange);
+      font-weight: bold;
+    }
+
+    /* SIDEBAR RIGHT */
+    .sidebar-right {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .widget {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .widget-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      font-family: 'Trebuchet MS', sans-serif;
+      margin-bottom: 12px;
+    }
+
+    .trending-item {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+      font-family: 'Trebuchet MS', sans-serif;
+    }
+
+    .trending-item:last-child { border-bottom: none; }
+
+    .trending-tag {
+      color: var(--orange);
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    .trending-count {
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 2px;
+    }
+
+    .suggest-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 0;
+    }
+
+    .suggest-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+
+    .suggest-name {
+      font-size: 12px;
+      font-family: 'Trebuchet MS', sans-serif;
+      color: var(--navy);
+      flex: 1;
+    }
+
+    .follow-btn {
+      font-size: 10px;
+      padding: 3px 10px;
+      border: 1px solid var(--orange);
+      border-radius: 20px;
+      background: transparent;
+      color: var(--orange);
+      cursor: pointer;
+      font-family: 'Trebuchet MS', sans-serif;
+    }
+
+    .feed-tabs {
+      display: flex;
+      gap: 0;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .feed-tab {
+      flex: 1;
+      padding: 9px;
+      font-size: 12px;
+      text-align: center;
+      font-family: 'Trebuchet MS', sans-serif;
+      color: var(--muted);
+      cursor: pointer;
+      border: none;
+      background: transparent;
+    }
+
+    .feed-tab.active {
+      background: var(--orange);
+      color: white;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Hopecore</div>
+    <ul class="nav-links">
+      <li><a href="#" class="active">Feed</a></li>
+      <li><a href="#">Explore</a></li>
+      <li><a href="#">Communities</a></li>
+      <li><a href="#">Saved</a></li>
+    </ul>
+    <div class="nav-right">
+      <span>Notifications (3)</span>
+      <div class="avatar-placeholder"></div>
+    </div>
+  </nav>
+
+  <!-- PAGE -->
+  <div class="page">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar-left">
+      <div class="sidebar-item active">Home Feed</div>
+      <div class="sidebar-item">Following</div>
+      <div class="sidebar-item">Trending</div>
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-label">Topics</div>
+      <div class="sidebar-item">Resilience</div>
+      <div class="sidebar-item">Mental Wellness</div>
+      <div class="sidebar-item">Human Stories</div>
+      <div class="sidebar-item">Wins</div>
+      <div class="sidebar-item">Creativity</div>
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-item">Your Profile</div>
+      <div class="sidebar-item">Settings</div>
+    </aside>
+
+    <!-- MAIN FEED -->
+    <main class="feed">
+
+      <!-- TABS -->
+      <div class="feed-tabs">
+        <button class="feed-tab active">For You</button>
+        <button class="feed-tab">Following</button>
+        <button class="feed-tab">New</button>
+      </div>
+
+      <!-- COMPOSE -->
+      <div class="compose">
+        <div class="compose-row">
+          <div class="post-avatar"></div>
+          <div class="compose-input">Share something hopeful today...</div>
+        </div>
+        <div class="compose-actions">
+          <button class="btn-ghost">+ Story</button>
+          <button class="btn-ghost">+ Video</button>
+          <button class="btn-primary">Post</button>
+        </div>
+      </div>
+
+      <!-- POST 1 — Quote style -->
+      <div class="post">
+        <div class="post-header">
+          <div class="post-avatar"></div>
+          <div class="post-meta">
+            <div class="post-name">Marcus T.</div>
+            <div class="post-time">2 hours ago · Public</div>
+          </div>
+          <span class="post-tag">Win</span>
+        </div>
+        <p class="post-body large">
+          "Three years ago I couldn't leave my house. Today I ran my first 5K. The finish line was the most beautiful thing I've ever seen."
+        </p>
+        <div class="post-actions">
+          <button class="action-btn liked">Inspired (248)</button>
+          <button class="action-btn">Comment (34)</button>
+          <button class="action-btn">Share</button>
+          <button class="action-btn">Save</button>
+        </div>
+      </div>
+
+      <!-- POST 2 — With image placeholder -->
+      <div class="post">
+        <div class="post-header">
+          <div class="post-avatar"></div>
+          <div class="post-meta">
+            <div class="post-name">Lena K.</div>
+            <div class="post-time">5 hours ago · Community: Creativity</div>
+          </div>
+          <span class="post-tag">Story</span>
+        </div>
+        <p class="post-body">
+          Just finished the mural I've been working on for six months. It covers an entire wall of the community center in my neighborhood. Art really does heal — both the maker and the people who see it.
+        </p>
+        <div class="post-image-placeholder">[ Image — 1200 x 800 ]</div>
+        <div class="post-actions">
+          <button class="action-btn">Inspired (91)</button>
+          <button class="action-btn">Comment (17)</button>
+          <button class="action-btn">Share</button>
+          <button class="action-btn">Save</button>
+        </div>
+      </div>
+
+      <!-- POST 3 — Plain text -->
+      <div class="post">
+        <div class="post-header">
+          <div class="post-avatar"></div>
+          <div class="post-meta">
+            <div class="post-name">Dev R.</div>
+            <div class="post-time">Yesterday · Public</div>
+          </div>
+          <span class="post-tag">Resilience</span>
+        </div>
+        <p class="post-body">
+          Reminder: you don't have to have it all figured out. You just have to take the next small step. That's it. That's the whole thing.
+        </p>
+        <div class="post-actions">
+          <button class="action-btn">Inspired (1.4k)</button>
+          <button class="action-btn">Comment (203)</button>
+          <button class="action-btn">Share</button>
+          <button class="action-btn">Save</button>
+        </div>
+      </div>
+
+      <!-- POST 4 — Video placeholder -->
+      <div class="post">
+        <div class="post-header">
+          <div class="post-avatar"></div>
+          <div class="post-meta">
+            <div class="post-name">Hopecore Official</div>
+            <div class="post-time">2 days ago · Featured</div>
+          </div>
+          <span class="post-tag">Video</span>
+        </div>
+        <p class="post-body">
+          This week's featured story: A former refugee who became a teacher — and went back to build a school in her hometown.
+        </p>
+        <div class="post-image-placeholder">[ Video — 16:9 ]</div>
+        <div class="post-actions">
+          <button class="action-btn liked">Inspired (5.2k)</button>
+          <button class="action-btn">Comment (489)</button>
+          <button class="action-btn">Share</button>
+          <button class="action-btn">Save</button>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- RIGHT SIDEBAR -->
+    <aside class="sidebar-right">
+
+      <div class="widget">
+        <div class="widget-title">Trending Today</div>
+        <div class="trending-item">
+          <div class="trending-tag">#FirstSteps</div>
+          <div class="trending-count">3,210 posts</div>
+        </div>
+        <div class="trending-item">
+          <div class="trending-tag">#BuiltNotBorn</div>
+          <div class="trending-count">1,890 posts</div>
+        </div>
+        <div class="trending-item">
+          <div class="trending-tag">#SmallWins</div>
+          <div class="trending-count">940 posts</div>
+        </div>
+        <div class="trending-item">
+          <div class="trending-tag">#CommunityHeals</div>
+          <div class="trending-count">612 posts</div>
+        </div>
+      </div>
+
+      <div class="widget">
+        <div class="widget-title">Who to Follow</div>
+        <div class="suggest-row">
+          <div class="suggest-avatar"></div>
+          <div class="suggest-name">Priya M.</div>
+          <button class="follow-btn">Follow</button>
+        </div>
+        <div class="suggest-row">
+          <div class="suggest-avatar"></div>
+          <div class="suggest-name">James A.</div>
+          <button class="follow-btn">Follow</button>
+        </div>
+        <div class="suggest-row">
+          <div class="suggest-avatar"></div>
+          <div class="suggest-name">Sofia N.</div>
+          <button class="follow-btn">Follow</button>
+        </div>
+      </div>
+
+      <div class="widget">
+        <div class="widget-title">Your Stats</div>
+        <div style="font-size: 12px; font-family: 'Trebuchet MS', sans-serif; line-height: 2; color: var(--navy);">
+          <div>Posts this week: <strong>3</strong></div>
+          <div>Inspired others: <strong>142</strong></div>
+          <div>Followers: <strong>58</strong></div>
+          <div>Following: <strong>74</strong></div>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+
+</body>
+</html>
