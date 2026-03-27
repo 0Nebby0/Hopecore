@@ -4,20 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hopecore - Home</title>
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 
 
 <body>
 
     <header>
-        <!--Nav contains logo and links-->
+        <img src="/docs/images/Hopecore Logo.png" alt="Logo image" class="logo">
+        <p id="nav-logo">Hopecore</p>
+        <!--Nav contains links-->
         <nav id="header-nav">
-            <img src="/docs/images/Hopecore Logo.png" alt="Logo image" class="logo">
-            <p id="nav-logo">Hopecore</p>
-            <a href="#">Features</a>
-            <a href="#">About</a>
-            <a href="#">Testimonials</a>
-            <a href="#">Download</a>
+            <a class="brdr-right" href="#">Features</a>
+            <a class="brdr-right" href="#">About</a>
+            <a class="brdr-right" href="#">Testimonials</a>
+            <a class="brdr-right" href="#">Download</a>
             <a href="#">Contact</a>
         </nav>
     </header>
@@ -26,13 +27,21 @@
         <!--Hero div contains the first thing a user sees: a header, paragraph, image,
          and links that catch the users attention.-->
         <div id="hero">
-            <h1 id="hero-title">The Platform Built on Hope</h1>
-            <p id="hero-p">
-                We're building the platform for people who
-                still believe the world is worth fighting for.
-            </p>
-            <a target="_blank" href="" id="startBtn">Get Started</a>
-            <a target="_blank" href="" id="lmBtn">Learn More</a>
+            <div id="hero-content">
+                <section id="hero-higher">
+                   <h1 id="hero-title">The Platform Built on Hope</h1>
+                    <p id="hero-p">
+                        We're building the platform for people who
+                        still believe the world is worth fighting for.
+                    </p> 
+                </section>
+                <section id="hero-lower">
+                    <a target="_blank" href="" id="startBtn">Get Started</a>
+                    <a target="_blank" href="" id="lmBtn">Learn More</a>
+                </section>
+                
+            </div>
+            
             <img src="images/hopecore-hero.png" alt="Hopecore hero image" id="hero-img">
         </div>
 
@@ -69,14 +78,9 @@
             </section>
         </div>
 
-        <!-- Quotes div contains quotes with arrow buttons on left and right -->
-<<<<<<< HEAD
-        <div id="quotes">
-            <button id="btnLeft"></button>
-=======
+        <!-- Quotes div contains quotes with arrow buttons on right and right -->
         <section id="quotes">
-            <button id="btnLeft"><</button>
->>>>>>> d200e6485e1c717bf3293754a85db7135960b10d
+            <button id="btnright"><</button>
             <!-- Quotes section to make it easier to select this group of elements with CSS-->
             <section id="quote-s">
                 <p id="quote">
@@ -99,7 +103,7 @@
             </p>
             <input type="email" name="contact email" id="email" placeholder="Email address">
             <input type="text" name="contact name" id="name" placeholder="Full name">
-            <input type="button" value="Subscribe">
+            <input id="btnSubmit" type="button" value="Subscribe">
         </div>
 
     </main>
