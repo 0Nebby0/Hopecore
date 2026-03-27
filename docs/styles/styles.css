@@ -48,6 +48,11 @@ header {
     position: relative;
 }
 
+#header-nav a:hover {
+    text-decoration: underline;
+    opacity: 70%;
+}
+
 .brdr-right:after {
     content: "";
     height: 200%;
