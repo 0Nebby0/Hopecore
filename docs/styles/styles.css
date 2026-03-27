@@ -48,9 +48,8 @@ header {
     position: relative;
 }
 
-#header-nav a:hover {
+.nav-link:hover {
     text-decoration: underline;
-    opacity: 70%;
 }
 
 .brdr-right:after {
@@ -115,8 +114,16 @@ header {
     background-color: var(--primary-color);
 }
 
+#startBtn:hover {
+    opacity: 70%;
+}
+
 #lmBtn {
     color: var(--accent-1);
+}
+
+#lmBtn:hover {
+    opacity: 70%;
 }
 
 #content {
