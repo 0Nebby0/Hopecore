@@ -80,21 +80,22 @@
 
         <!-- Quotes div contains quotes with arrow buttons on right and right -->
         <section id="quotes">
-            <button id="btnright"><</button>
+            <button id="btnLeft"><img src="images/arrow-left.png" alt="Left arrow"></button>
             <!-- Quotes section to make it easier to select this group of elements with CSS-->
             <section id="quote-s">
                 <p id="quote">
                     "We're building the platform for people who still believe 
                     the world is worth fighting for."
                 </p>
+                <div> </div>
                 <img src="./images/Hopecore Logo.png" alt="Logo image" class="logo">
                 <p id="quoter">Benjamin Pagan, Client</p>
             </section>
-            <button id="btnRight">></button>
+            <button id="btnRight"><img src="images/arrow-right.png" alt="Right arrow"></button>
         </section>
 
         <!--Contact div acts as a way for users to contact/subscribe to Hopecore-->
-        <div action="" id="contact">
+        <form action="" id="contact">
             <h1 id="contact-title">Get In Touch</h1>
             <p id="contact-p">
                 We'd love to stay connected! Share your name and email below, 
@@ -104,7 +105,7 @@
             <input type="email" name="contact email" id="email" placeholder="Email address">
             <input type="text" name="contact name" id="name" placeholder="Full name">
             <input id="btnSubmit" type="button" value="Subscribe">
-        </div>
+        </form>
 
     </main>
 
@@ -121,12 +122,13 @@
             <a href="" id="googleplay"><img src="images/googleplay-img.webp" alt="Googleplay link" id="googleplay-img"></a>
         </div>
         <nav id="footer-nav">
-            <a href="#">Features</a>
-            <a href="#">About</a>
-            <a href="#">Testimonials</a>
-            <a href="#">Download</a>
-            <a href="#">Contact</a>
+            <a class="brdr-right nav-link" href="#">Features</a>
+            <a class="brdr-right nav-link" href="#">About</a>
+            <a class="brdr-right nav-link" href="#">Testimonials</a>
+            <a class="brdr-right nav-link" href="#">Download</a>
+            <a class="nav-link" href="#">Contact</a>
         </nav>
+        <div id="bottom-line"> </div>
         <p id="address">198 S Center St, Rexburg, ID 83440</p>
         <p id="copyright">  &copy; 2026 Hopecore All rights reserved.</p>
     </footer>    

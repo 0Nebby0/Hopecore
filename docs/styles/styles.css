@@ -1,10 +1,16 @@
+/*
+    root variables for color template
+*/
 :root {
     --primary-color: #F5A623;
     --secondary-color: #FFF4E6;
-    --accent-1: #2C3E50;
-    --bottom-border-color: #2c3e502c;
+    --accent-1: #2c3e50;
+    --bottom-border-color: #2c3e5039;
 }
 
+/*
+    General CSS for basic tags like p, a, and h1
+*/
 html {
     background-color: var(--secondary-color);
     color: var(--accent-1);
@@ -14,6 +20,7 @@ html {
 
 p {
     color: var(--accent-1);
+    opacity: 70%;
 }
 
 a {
@@ -21,16 +28,14 @@ a {
     text-decoration: none;
 }
 
-h1 {
+h1, h2 {
     color: var(--primary-color);
     font-weight: bold;
 }
 
-#btnSubmit {
-    color: var(--secondary-color);
-    background-color: var(--accent-1);
-}
-
+/*
+    Header CSS for header and nav elements
+*/
 header {
     display: grid;
     grid-template-columns: 90px 1fr 1fr;
@@ -73,6 +78,9 @@ header {
     width: 5em;
 }
 
+/*
+    CSS for the hero div
+*/
 #hero {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -126,6 +134,9 @@ header {
     opacity: 70%;
 }
 
+/*
+    CSS for the content div and child sections
+*/
 #content {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -141,4 +152,157 @@ header {
 
 .content-section img {
     width: 50px;
+}
+
+/*
+    CSS for quotes section
+*/
+#quotes {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-bottom: solid 1px var(--bottom-border-color);
+}
+
+#quote-s {
+    justify-items: center;
+    text-align: center;
+}
+
+#quote {
+    font-size: large;
+    margin: 100px 5px 10px;
+    line-height: 1.5;
+}
+
+#quote-s div {
+    width: 20%;
+    border-bottom: solid 2px var(--accent-1);
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+#btnLeft, #btnRight {
+    background-color: var(--secondary-color);
+    border: none;
+    width: 50px;
+    height: 50px;
+    align-self: center;
+    justify-self: center;
+}
+
+#btnLeft img, #btnRight img {
+    width: 100%;
+}
+
+#btnLeft:hover, #btnRight:hover {
+    opacity: 50%;
+}
+#quoter {
+    font-size: smaller;
+    opacity: 70%;
+    margin-bottom: 100px;
+}
+
+/*
+    CSS for the contact form
+*/
+#contact {
+    padding: 50px;
+    text-align: center;
+    border-bottom: solid 1px var(--bottom-border-color);
+}
+
+#contact input {
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: none;    
+    border-radius: 3px;
+    margin: 5px;
+}
+
+#name, #email {
+    padding: 7px 7px 4px;
+    border: solid 2px var(--primary-color);
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+}
+
+#name:focus, #email:focus {
+    outline: solid 2px var(--primary-color);
+}
+
+#name::placeholder, #email::placeholder {
+    color: var(--primary-color);
+}
+
+#btnSubmit {
+    padding: 7px 7px 4px;
+    margin: 5px;
+    color: var(--secondary-color);
+    background-color: var(--accent-1);
+    border: solid 1px var(--accent-1);
+}
+
+#btnSubmit:hover {
+    opacity: 80%;
+}
+
+/*
+    CSS for footer
+*/
+
+footer {
+    text-align: center;
+    padding: 30px 0;
+}
+
+#download-p {
+    width: 50%;
+    justify-self: center;
+    margin-bottom: 30px;
+}
+
+#download a img {
+    width: 125px;
+}
+
+#footer-nav {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    text-align: center;
+    width: 50%;
+    justify-self: center;
+    margin-top: 100px;
+}
+
+#footer-nav a {
+    margin: 25px 5px;
+    position: relative;
+    color: var(--accent-1);
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+.brdr-right:after {
+    content: "";
+    height: 200%;
+    width: 1px;
+    position: absolute;
+    right: 0;
+    top: -50%;
+    background-color: var(--primary-color);
+}
+
+#bottom-line {
+    justify-self: center;
+    width: 5%;
+    border-bottom: solid 2px var(--accent-1);
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+#address, #copyright {
+    opacity: 100%;
+    font-size: small;
 }
