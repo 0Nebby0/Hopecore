@@ -298,8 +298,8 @@ footer {
     justify-self: center;
     width: 5%;
     border-bottom: solid 2px var(--accent-1);
-    margin-top: 25px;
-    margin-bottom: 25px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 #address, #copyright {
