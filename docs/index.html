@@ -4,21 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hopecore - Home</title>
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 
 
 <body>
 
     <header>
-        <!--Nav contains logo and links-->
+        <img src="./images/Hopecore Logo.png" alt="Logo image" class="logo">
+        <p id="nav-logo">Hopecore</p>
+        <!--Nav contains links-->
         <nav id="header-nav">
-            <img src="/docs/images/Hopecore Logo.png" alt="Logo image" class="logo">
-            <p id="nav-logo">Hopecore</p>
-            <a href="#">Features</a>
-            <a href="#">About</a>
-            <a href="#">Testimonials</a>
-            <a href="#">Download</a>
-            <a href="#">Contact</a>
+            <a class="brdr-right nav-link" href="#">Features</a>
+            <a class="brdr-right nav-link" href="#">About</a>
+            <a class="brdr-right nav-link" href="#">Testimonials</a>
+            <a class="brdr-right nav-link" href="#">Download</a>
+            <a class="nav-link" href="#">Contact</a>
         </nav>
     </header>
 
@@ -26,13 +27,21 @@
         <!--Hero div contains the first thing a user sees: a header, paragraph, image,
          and links that catch the users attention.-->
         <div id="hero">
-            <h1 id="hero-title">The Platform Built on Hope</h1>
-            <p id="hero-p">
-                We're building the platform for people who
-                still believe the world is worth fighting for.
-            </p>
-            <a target="_blank" href="" id="startBtn">Get Started</a>
-            <a target="_blank" href="" id="lmBtn">Learn More</a>
+            <div id="hero-content">
+                <section id="hero-higher">
+                   <h1 id="hero-title">The Platform Built on Hope</h1>
+                    <p id="hero-p">
+                        We're building the platform for people who
+                        still believe the world is worth fighting for.
+                    </p> 
+                </section>
+                <section id="hero-lower">
+                    <a target="_blank" href="" id="startBtn">Get Started</a>
+                    <a target="_blank" href="" id="lmBtn">Learn More</a>
+                </section>
+                
+            </div>
+            
             <img src="images/hopecore-hero.png" alt="Hopecore hero image" id="hero-img">
         </div>
 
@@ -69,28 +78,24 @@
             </section>
         </div>
 
-        <!-- Quotes div contains quotes with arrow buttons on left and right -->
-<<<<<<< HEAD
-        <div id="quotes">
-            <button id="btnLeft"></button>
-=======
+        <!-- Quotes div contains quotes with arrow buttons on right and right -->
         <section id="quotes">
-            <button id="btnLeft"><</button>
->>>>>>> d200e6485e1c717bf3293754a85db7135960b10d
+            <button id="btnLeft"><img src="images/arrow-left.png" alt="Left arrow"></button>
             <!-- Quotes section to make it easier to select this group of elements with CSS-->
             <section id="quote-s">
                 <p id="quote">
                     "We're building the platform for people who still believe 
                     the world is worth fighting for."
                 </p>
-                <img src="/docs/images/Hopecore Logo.png" alt="Logo image" class="logo">
+                <div> </div>
+                <img src="./images/Hopecore Logo.png" alt="Logo image" class="logo">
                 <p id="quoter">Benjamin Pagan, Client</p>
             </section>
-            <button id="btnRight">></button>
+            <button id="btnRight"><img src="images/arrow-right.png" alt="Right arrow"></button>
         </section>
 
         <!--Contact div acts as a way for users to contact/subscribe to Hopecore-->
-        <div action="" id="contact">
+        <form action="" id="contact">
             <h1 id="contact-title">Get In Touch</h1>
             <p id="contact-p">
                 We'd love to stay connected! Share your name and email below, 
@@ -99,8 +104,8 @@
             </p>
             <input type="email" name="contact email" id="email" placeholder="Email address">
             <input type="text" name="contact name" id="name" placeholder="Full name">
-            <input type="button" value="Subscribe">
-        </div>
+            <input id="btnSubmit" type="button" value="Subscribe">
+        </form>
 
     </main>
 
@@ -117,12 +122,13 @@
             <a href="" id="googleplay"><img src="images/googleplay-img.webp" alt="Googleplay link" id="googleplay-img"></a>
         </div>
         <nav id="footer-nav">
-            <a href="#">Features</a>
-            <a href="#">About</a>
-            <a href="#">Testimonials</a>
-            <a href="#">Download</a>
-            <a href="#">Contact</a>
+            <a class="brdr-right nav-link" href="#">Features</a>
+            <a class="brdr-right nav-link" href="#">About</a>
+            <a class="brdr-right nav-link" href="#">Testimonials</a>
+            <a class="brdr-right nav-link" href="#">Download</a>
+            <a class="nav-link" href="#">Contact</a>
         </nav>
+        <div id="bottom-line"> </div>
         <p id="address">198 S Center St, Rexburg, ID 83440</p>
         <p id="copyright">  &copy; 2026 Hopecore All rights reserved.</p>
     </footer>    
