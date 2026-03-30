@@ -79,6 +79,72 @@ header {
 }
 
 /*
+    CSS for main
+*/
+
+main {
+    margin-top: 50px;
+}
+
+/* General */
+#make-post, .post {
+    border-style: solid;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* Post form */
+
+#post-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#post-form input {
+    height: 30px;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+#post-form button {
+    border-style: none;
+    border-radius: 20px;
+    width: 60px;
+    color: white;
+    background-color: var(--primary-color);
+    height: 30px;
+}
+
+/* Posts */
+
+
+#posts {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.post {
+    
+}
+
+.post h2 {
+    color: black;
+    font-size: 15px;
+}
+
+.post h3 {
+    color: gray;
+    font-size: 10px;
+}
+
+.post p {
+    color: black;
+}
+
+/*
     CSS for footer
 */
 
