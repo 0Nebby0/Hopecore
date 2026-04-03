@@ -17,4 +17,4 @@ Because I'm familiar with GitHub, I didn't have any problems adding changes to t
 
 ### Include links to the site.
 
-There currently isn't one.
+https://0nebby0.github.io/Hopecore/feed.html
